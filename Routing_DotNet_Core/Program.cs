@@ -9,17 +9,54 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseRouting();
+
+//works for Both GET and POST as it has Map
+
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.Map("Map1", async (context) =>
+//    {
+//        await context.Response.WriteAsync("In Map 1");
+//    });
+//});
+
+
+app.UseEndpoints(endpoints =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    endpoints.MapGet("Map1", async (context) =>
+    {
+        await context.Response.WriteAsync("In Map 1");
+    });
+});
 
-app.UseHttpsRedirection();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapPost("Map2", async (context) =>
+    {
+        await context.Response.WriteAsync("In Map 2");
+    });
+});
 
-app.UseAuthorization();
+//Default routing
 
-app.MapControllers();
+//app.Run(async context =>
+//{
+//    await context.Response.WriteAsync($"Request received At {context.Request.Path}");
+//});
+
+
+//// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+//app.UseHttpsRedirection();
+
+//app.UseAuthorization();
+
+//app.MapControllers();
 
 app.Run();
