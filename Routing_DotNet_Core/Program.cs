@@ -21,6 +21,11 @@ app.UseRouting();
 //    });
 //});
 
+app.Use(async (context, next) =>
+{
+    Microsoft.AspNetCore.Http.Endpoint endpoint = context.GetEndpoint();
+    await next(context);
+});
 
 app.UseEndpoints(endpoints =>
 {
