@@ -40,10 +40,10 @@ app.UseEndpoints(endpoints =>
 
 //Default routing
 
-//app.Run(async context =>
-//{
-//    await context.Response.WriteAsync($"Request received At {context.Request.Path}");
-//});
+app.Run(async context =>
+{
+    await context.Response.WriteAsync($"Request received At {context.Request.Path}");
+});
 
 
 //// Configure the HTTP request pipeline.
